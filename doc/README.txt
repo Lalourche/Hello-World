@@ -8,6 +8,7 @@ DEVELOPMENT ENVIRONMENT :
 			. GitHub connector
 		. Checkstyle
 		. Findbugs 2.0.0
+		. m2e (maven)
 
 	- Winmerge 2.12.4
 
@@ -16,4 +17,6 @@ DEVELOPMENT ENVIRONMENT :
 	
 	- Jenkins
 		. GitHub plugin
+		
+	- Maven 3.0.4
 	
