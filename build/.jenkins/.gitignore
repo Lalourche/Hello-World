@@ -19,3 +19,5 @@
 /hudson.tasks.Shell.xml
 /hudson.triggers.SCMTrigger.xml
 /com.cloudbees.jenkins.GitHubPushTrigger.xml
+/fingerprints/
+/maven-repositories/
