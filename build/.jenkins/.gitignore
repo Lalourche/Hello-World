@@ -21,3 +21,4 @@
 /com.cloudbees.jenkins.GitHubPushTrigger.xml
 /fingerprints/
 /maven-repositories/
+/.owner
