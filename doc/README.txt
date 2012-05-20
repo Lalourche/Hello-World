@@ -9,6 +9,8 @@ DEVELOPMENT ENVIRONMENT :
 		. Checkstyle
 		. Findbugs 2.0.0
 		. m2e (maven)
+		. Hibernate Tools
+		. Resource Bundle editor
 
 	- Winmerge 2.12.4
 
@@ -19,4 +21,6 @@ DEVELOPMENT ENVIRONMENT :
 		. GitHub plugin
 		
 	- Maven 3.0.4
+	
+	- SQLite 3.7
 	
