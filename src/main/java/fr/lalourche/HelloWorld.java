@@ -1,6 +1,7 @@
 package fr.lalourche;
 
 import java.io.PrintStream;
+import java.util.ResourceBundle;
 
 /**
  * @author Lalourche
@@ -28,7 +29,7 @@ public class HelloWorld
    */
   public HelloWorld(PrintStream out)
   {
-    message_ = "Hello World !";
+    message_ = ResourceBundle.getBundle("messages").getString("hello.message");
     out_ = out;
   }
 
