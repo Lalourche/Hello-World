@@ -5,8 +5,11 @@ package fr.lalourche.model;
 
 import java.util.List;
 
+import junit.framework.Assert;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -26,7 +29,11 @@ public class MessageTest
   @BeforeClass
   public static void setUpBeforeClass() throws Exception
   {
-//    List<Message> messages = list();
+    // Clean up the list of messages
+    List<Message> messages = list();
+    for (Message m : messages) {
+      delete(m);
+    }
   }
 
   /**
@@ -36,6 +43,14 @@ public class MessageTest
   @AfterClass
   public static void tearDownAfterClass() throws Exception
   {
+    // Add a small tempo in order for the JVM not to close too soon
+    // and allow the complete writing of data into the database
+    try {
+      Thread.sleep(1000);
+    }
+    catch (InterruptedException e) {
+      e.printStackTrace();
+    }
   }
 
   /**
@@ -60,13 +75,28 @@ public class MessageTest
    * Write test.
    */
   @Test
-  public final void write()
+  public final void writeTest()
   {
     System.out.println("******* WRITE *******");
-    Message m = new Message("Toto");
+    String s = "Toto";
+    Message m = new Message(s);
     m = save(m);
-    m = read(m.getId());
-    System.out.printf("%d %s \n", m.getId(), m.getValue());
+    Long id = m.getId();
+    Assert.assertTrue(id > 0);
+
+    System.out.println("******* READ *******");
+    m = read(id);
+    System.out.println(m);
+    Assert.assertEquals(m.getValue(), s);
+
+    System.out.println("******* UPDATE *******");
+    String newValue = "Titi";
+    m.setValue(newValue);
+    update(m);
+    Assert.assertEquals(m.getId(), id);
+    m = read(id);
+    System.out.println(m);
+    Assert.assertEquals(m.getValue(), newValue);
   }
 
   /**
@@ -78,7 +108,7 @@ public class MessageTest
     SessionFactory sf = HibernateUtil.getSessionFactory();
     Session session = sf.openSession();
 
-    List<Message> messages = session.createQuery("from MESSAGE").list();
+    List<Message> messages = session.createQuery("from Message").list();
     session.close();
     return messages;
   }
@@ -108,12 +138,13 @@ public class MessageTest
     SessionFactory sf = HibernateUtil.getSessionFactory();
     Session session = sf.openSession();
 
-    session.beginTransaction();
+    Transaction transaction = session.beginTransaction();
 
     Long id = (Long) session.save(message);
+    session.flush();
     message.setId(id);
 
-    session.getTransaction().commit();
+    transaction.commit();
 
     session.close();
 
@@ -137,8 +168,8 @@ public class MessageTest
     session.getTransaction().commit();
 
     session.close();
-    return message;
 
+    return message;
   }
 
   /**
@@ -150,11 +181,11 @@ public class MessageTest
     SessionFactory sf = HibernateUtil.getSessionFactory();
     Session session = sf.openSession();
 
-    session.beginTransaction();
+    Transaction transaction = session.beginTransaction();
 
     session.delete(message);
 
-    session.getTransaction().commit();
+    transaction.commit();
 
     session.close();
   }

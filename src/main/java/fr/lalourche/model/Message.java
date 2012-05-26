@@ -74,4 +74,13 @@ public class Message
   {
     value_ = value;
   }
+
+  /* (non-Javadoc)
+   * @see java.lang.Object#toString()
+   */
+  @Override
+  public final String toString()
+  {
+    return "(" + id_ + ") " + value_;
+  }
 }
