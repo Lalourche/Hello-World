@@ -22,5 +22,3 @@ DEVELOPMENT ENVIRONMENT :
 		
 	- Maven 3.0.4
 	
-	- SQLite 3.7
-	
