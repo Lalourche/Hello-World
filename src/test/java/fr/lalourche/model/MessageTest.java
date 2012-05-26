@@ -3,10 +3,12 @@
  */
 package fr.lalourche.model;
 
+import java.io.File;
 import java.util.List;
 
 import junit.framework.Assert;
 
+import org.apache.commons.io.FileUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -29,11 +31,10 @@ public class MessageTest
   @BeforeClass
   public static void setUpBeforeClass() throws Exception
   {
-    // Clean up the list of messages
-    List<Message> messages = list();
-    for (Message m : messages) {
-      delete(m);
-    }
+    // Start from default database
+    File emptyDatabaseDir = new File("./database/default");
+    File currentDatabaseDir = new File("./database");
+    FileUtils.copyDirectory(emptyDatabaseDir, currentDatabaseDir);
   }
 
   /**
@@ -75,7 +76,7 @@ public class MessageTest
    * Write test.
    */
   @Test
-  public final void writeTest()
+  public final void mainTest()
   {
     System.out.println("******* WRITE *******");
     String s = "Toto";
@@ -97,6 +98,16 @@ public class MessageTest
     m = read(id);
     System.out.println(m);
     Assert.assertEquals(m.getValue(), newValue);
+
+    System.out.println("******* LIST *******");
+    List<Message> allMessages = list();
+    Assert.assertEquals(allMessages.size(), 1);
+
+    System.out.println("******* DELETE *******");
+    m = read(id);
+    delete(m);
+    m = read(id);
+    Assert.assertNull(m);
   }
 
   /**
