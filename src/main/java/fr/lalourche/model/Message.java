@@ -5,8 +5,6 @@ package fr.lalourche.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -15,13 +13,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "MESSAGE")
-public class Message
+public class Message extends fr.lalourche.model.Entity
 {
-  /** Message Id. */
-  @Id
-  @GeneratedValue
-  private Long id_;
-
   /** Message content. */
   @Column(name = "value")
   private String value_;
@@ -41,22 +34,6 @@ public class Message
   public Message(String value)
   {
     value_ = value;
-  }
-
-  /**
-   * @return the id
-   */
-  public final Long getId()
-  {
-    return id_;
-  }
-
-  /**
-   * @param id the id to set
-   */
-  public final void setId(Long id)
-  {
-    id_ = id;
   }
 
   /**
@@ -81,6 +58,6 @@ public class Message
   @Override
   public final String toString()
   {
-    return "(" + id_ + ") " + value_;
+    return super.toString() + " " + value_;
   }
 }
