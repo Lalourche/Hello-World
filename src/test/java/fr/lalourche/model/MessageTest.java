@@ -5,6 +5,7 @@ package fr.lalourche.model;
 
 import java.io.File;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import junit.framework.Assert;
 
@@ -29,8 +30,12 @@ public class MessageTest
   public static void setUpBeforeClass() throws Exception
   {
     // Start from default database
-    File emptyDatabaseDir = new File("./database/default");
-    File currentDatabaseDir = new File("./database");
+    ResourceBundle rb = ResourceBundle.getBundle("configuration");
+    String emptyDatabaseDirName = rb.getString("database.empty.dir");
+    String currentDatabaseDirName = rb.getString("database.current.dir");
+    File emptyDatabaseDir = new File(emptyDatabaseDirName);
+    File currentDatabaseDir = new File(currentDatabaseDirName);
+
     FileUtils.copyDirectory(emptyDatabaseDir, currentDatabaseDir);
   }
 
