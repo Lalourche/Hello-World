@@ -90,20 +90,20 @@ public class MessageTest
     System.out.println("******* READ *******");
     Entity.read(id, Message.class);
     System.out.println(m);
-    Assert.assertEquals(m.getValue(), s);
+    Assert.assertEquals(s, m.getValue());
 
     System.out.println("******* UPDATE *******");
     String newValue = "Titi";
     m.setValue(newValue);
     m.update();
-    Assert.assertEquals(m.getId(), id);
+    Assert.assertEquals(id, m.getId());
     m = (Message) Entity.read(id, Message.class);
     System.out.println(m);
-    Assert.assertEquals(m.getValue(), newValue);
+    Assert.assertEquals(newValue, m.getValue());
 
     System.out.println("******* LIST *******");
     List<Message> allMessages = (List<Message>) Entity.list(Message.class);
-    Assert.assertEquals(allMessages.size(), 1);
+    Assert.assertEquals(1, allMessages.size());
 
     System.out.println("******* DELETE *******");
     m = (Message) Entity.read(id, Message.class);
