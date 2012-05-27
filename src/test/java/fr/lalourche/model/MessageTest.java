@@ -70,12 +70,12 @@ public class MessageTest
   }
 
   /**
-   * Write test.
+   * CRUD test.
    */
   @Test
-  public final void mainTest()
+  public final void testCRUD()
   {
-    System.out.println("******* WRITE *******");
+    System.out.println("******* CREATE *******");
     String s = "Toto";
     Message m = new Message(s);
     m.save();
@@ -105,5 +105,30 @@ public class MessageTest
     m.delete();
     m = (Message) Entity.read(id, Message.class);
     Assert.assertNull(m);
+  }
+
+  /**
+   * Test multiple entities handling.
+   * Tests list and deleteAll
+   */
+  @Test
+  public final void testMultiple()
+  {
+    // Create multiple messages
+    String s = "Toto";
+    final int max = 100;
+    for (int i = 0; i < max; i++) {
+      Message m = new Message(s);
+      m.save();
+    }
+
+    System.out.println("******* LIST *******");
+    List<Message> allMessages = (List<Message>) Entity.list(Message.class);
+    Assert.assertEquals(max, allMessages.size());
+
+    System.out.println("******* DELETE ALL *******");
+    Entity.deleteAll(Message.class);
+    allMessages = (List<Message>) Entity.list(Message.class);
+    Assert.assertEquals(0, allMessages.size());
   }
 }

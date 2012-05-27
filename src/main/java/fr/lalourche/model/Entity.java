@@ -127,4 +127,18 @@ public abstract class Entity
 
     session.close();
   }
+
+  /**
+   * Delete all the entities of a specified class.
+   * @param clazz the class to delete
+   */
+  public static void deleteAll(Class<? extends Entity> clazz)
+  {
+    SessionFactory sf = HibernateUtil.getSessionFactory();
+    Session session = sf.openSession();
+
+    String query = "delete from " + clazz.getSimpleName();
+    session.createQuery(query).executeUpdate();
+    session.close();
+  }
 }
