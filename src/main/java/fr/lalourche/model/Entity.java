@@ -141,4 +141,16 @@ public abstract class Entity
     session.createQuery(query).executeUpdate();
     session.close();
   }
+
+  //CHECKSTYLE:OFF There is a need to implement this method
+  //also in the mother class.
+  /* (non-Javadoc)
+   * @see java.lang.Object#toString()
+   */
+  @Override
+  public String toString()
+  {
+    return "(" + id_ + ")";
+  }
+ //CHECKSTYLE:ON
 }

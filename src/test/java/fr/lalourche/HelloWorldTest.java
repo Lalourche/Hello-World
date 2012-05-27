@@ -5,11 +5,16 @@ import java.io.PrintStream;
 
 import junit.framework.Assert;
 
+import fr.lalourche.model.Entity;
+import fr.lalourche.model.Message;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+
 
 /**
  * @author Lalourche
@@ -23,6 +28,9 @@ public class HelloWorldTest
 
   /** Instance of class to test. */
   private static HelloWorld hw_;
+
+  /** Id of the persisted message. */
+  private static Long id_;
 
   /** Content of the test output stream. */
   private static ByteArrayOutputStream outContent_;
@@ -52,6 +60,7 @@ public class HelloWorldTest
   public final void setUp() throws Exception
   {
     hw_ = new HelloWorld(new PrintStream(outContent_));
+    id_ = hw_.getMessage().getId();
   }
 
   /**
@@ -68,7 +77,7 @@ public class HelloWorldTest
   @Test
   public final void testMessage()
   {
-    Assert.assertEquals(HELLO_WORLD_STRING, hw_.getMessage());
+    Assert.assertEquals(HELLO_WORLD_STRING, hw_.getMessageValue());
   }
 
   /**
@@ -80,6 +89,16 @@ public class HelloWorldTest
     hw_.execute();
     String expected = HELLO_WORLD_STRING + System.getProperty("line.separator");
     Assert.assertEquals(expected, outContent_.toString());
+  }
+
+  /**
+   * Test the database persistence.
+   */
+  @Test
+  public final void testPersistence()
+  {
+    Message m = (Message) Entity.read(id_, Message.class);
+    Assert.assertEquals(HELLO_WORLD_STRING, m.getValue());
   }
 
 }
