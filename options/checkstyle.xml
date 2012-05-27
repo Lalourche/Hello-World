@@ -87,7 +87,7 @@
 
 		<!-- Ensure certain import order -->
 		<module name="ImportOrder">
-	          <property name="groups" value="java,javax"/>
+	          <property name="groups" value="java,javax,junit,fr,org,com"/>
 	          <property name="ordered" value="true"/>
 	          <property name="separated" value="true"/>
 		</module>

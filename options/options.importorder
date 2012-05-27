@@ -1,0 +1,8 @@
+#Organize Import Order
+#Sun May 27 23:28:11 CEST 2012
+5=com
+4=org
+3=fr
+2=junit
+1=javax
+0=java
