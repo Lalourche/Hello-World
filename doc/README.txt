@@ -19,6 +19,7 @@ DEVELOPMENT ENVIRONMENT :
 	
 	- Jenkins
 		. GitHub plugin
+		. Emma plugin
 		
 	- Maven 3.0.4
 	
