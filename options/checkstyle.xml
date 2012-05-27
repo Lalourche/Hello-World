@@ -24,6 +24,8 @@
     </module>
 
     <module name="TreeWalker">
+    
+    	<module name="FileContentsHolder"/>
 
         <!-- Javadoc for class/interface must be present/valid. -->
         <!-- Require author to be present.                      -->
@@ -83,7 +85,7 @@
 		<!-- Avoid unused imports -->
         <module name="UnusedImports"/>
 
-		<!-- Ensure certian import order -->
+		<!-- Ensure certain import order -->
 		<module name="ImportOrder">
 	          <property name="groups" value="java,javax"/>
 	          <property name="ordered" value="true"/>
@@ -361,7 +363,7 @@
 	<!-- Avoid explicit initialization to the default value -->
 	<module name="ExplicitInitialization"/>
 
-	<!-- Ensure the default clasue is the last case in a switch -->
+	<!-- Ensure the default case is the last case in a switch -->
 	<module name="DefaultComesLast"/>
 
 	<!-- Disallow non-commented switch fall through -->
@@ -427,5 +429,7 @@
 	<module name="SuppressionFilter">
 	    <property name="file" value="${checkstyleConfigDir}/checkstyleSuppressions.xml"/>
 	</module>
+	
+	<module name="SuppressionCommentFilter"/>
 
 </module>
