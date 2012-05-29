@@ -427,7 +427,7 @@
 
 	<!-- Exceptions -->
 	<module name="SuppressionFilter">
-	    <property name="file" value="${checkstyleConfigDir}/checkstyleSuppressions.xml"/>
+	    <property name="file" value="${basedir}/options/checkstyleSuppressions.xml"/>
 	</module>
 	
 	<module name="SuppressionCommentFilter"/>
