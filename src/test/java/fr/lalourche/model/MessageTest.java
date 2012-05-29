@@ -3,13 +3,10 @@
  */
 package fr.lalourche.model;
 
-import java.io.File;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import junit.framework.Assert;
 
-import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -30,13 +27,19 @@ public class MessageTest
   public static void setUpBeforeClass() throws Exception
   {
     // Start from default database
-    ResourceBundle rb = ResourceBundle.getBundle("configuration");
-    String emptyDatabaseDirName = rb.getString("database.empty.dir");
-    String currentDatabaseDirName = rb.getString("database.current.dir");
-    File emptyDatabaseDir = new File(emptyDatabaseDirName);
-    File currentDatabaseDir = new File(currentDatabaseDirName);
+//    ResourceBundle rb = ResourceBundle.getBundle("configuration");
+//    String emptyDatabaseDirName = rb.getString("database.empty.dir");
+//    String currentDatabaseDirName = rb.getString("database.current.dir");
+//    File emptyDatabaseDir = new File(emptyDatabaseDirName);
+//    File currentDatabaseDir = new File(currentDatabaseDirName);
+//
+//    System.out.print("Reinitializing database from : ");
+//    System.out.println(emptyDatabaseDir.getAbsolutePath());
+//    System.out.println("to : " + currentDatabaseDir.getAbsolutePath());
+//    FileUtils.copyDirectory(emptyDatabaseDir, currentDatabaseDir);
 
-    FileUtils.copyDirectory(emptyDatabaseDir, currentDatabaseDir);
+    // check that database is empty
+    Assert.assertEquals(0, Entity.count(Message.class));
   }
 
   /**
@@ -54,6 +57,9 @@ public class MessageTest
     catch (InterruptedException e) {
       e.printStackTrace();
     }
+
+    // check that database is empty
+    Assert.assertEquals(0, Entity.count(Message.class));
   }
 
   /**
@@ -110,6 +116,8 @@ public class MessageTest
     m.delete();
     m = (Message) Entity.read(id, Message.class);
     Assert.assertNull(m);
+    allMessages = (List<Message>) Entity.list(Message.class);
+    Assert.assertEquals(0, allMessages.size());
   }
 
   /**
@@ -120,7 +128,7 @@ public class MessageTest
   public final void testMultiple()
   {
     // Create multiple messages
-    String s = "Toto";
+    String s = "Multiple";
     final int max = 100;
     for (int i = 0; i < max; i++) {
       Message m = new Message(s);

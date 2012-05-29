@@ -55,7 +55,9 @@ public abstract class Entity
 
     String query = "from " + clazz.getSimpleName();
     List<Message> messages = session.createQuery(query).list();
+
     session.close();
+
     return messages;
   }
 
@@ -137,9 +139,34 @@ public abstract class Entity
     SessionFactory sf = HibernateUtil.getSessionFactory();
     Session session = sf.openSession();
 
+    Transaction transaction = session.beginTransaction();
+
     String query = "delete from " + clazz.getSimpleName();
     session.createQuery(query).executeUpdate();
+
+    transaction.commit();
+
     session.close();
+  }
+
+  /**
+   * Counts all the entities of a specified class.
+   * @param clazz the class to count
+   * @return the count
+   */
+  public static long count(Class<? extends Entity> clazz)
+  {
+    Long result;
+
+    SessionFactory sf = HibernateUtil.getSessionFactory();
+    Session session = sf.openSession();
+
+    String query = "select count(*) from " + clazz.getSimpleName();
+    result = (Long) session.createQuery(query).iterate().next();
+
+    session.close();
+
+    return result.longValue();
   }
 
   //CHECKSTYLE:OFF There is a need to implement this method

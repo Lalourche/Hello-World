@@ -42,7 +42,12 @@ public class HelloWorldTest
   @BeforeClass
   public static void setUpBeforeClass() throws Exception
   {
+    // check that database is empty
+    Assert.assertEquals(0, Entity.count(Message.class));
+
     outContent_ = new ByteArrayOutputStream();
+    hw_ = new HelloWorld(new PrintStream(outContent_));
+    id_ = hw_.getMessage().getId();
   }
 
   /**
@@ -51,6 +56,8 @@ public class HelloWorldTest
   @AfterClass
   public static void tearDownAfterClass() throws Exception
   {
+    // check that database is empty
+    Assert.assertEquals(0, Entity.count(Message.class));
   }
 
   /**
@@ -59,8 +66,6 @@ public class HelloWorldTest
   @Before
   public final void setUp() throws Exception
   {
-    hw_ = new HelloWorld(new PrintStream(outContent_));
-    id_ = hw_.getMessage().getId();
   }
 
   /**
@@ -99,6 +104,9 @@ public class HelloWorldTest
   {
     Message m = (Message) Entity.read(id_, Message.class);
     Assert.assertEquals(HELLO_WORLD_STRING, m.getValue());
+
+    // Clean up
+    m.delete();
   }
 
 }
