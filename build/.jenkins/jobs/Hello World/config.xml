@@ -89,7 +89,11 @@
     </hudson.plugins.emma.EmmaPublisher>
   </publishers>
   <buildWrappers/>
-  <prebuilders/>
+  <prebuilders>
+    <hudson.tasks.BatchFile>
+      <command>del &quot;%WORKSPACE%\launchers\*.launch&quot;</command>
+    </hudson.tasks.BatchFile>
+  </prebuilders>
   <postbuilders/>
   <runPostStepsIfResult>
     <name>FAILURE</name>
