@@ -20,6 +20,13 @@ DEVELOPMENT ENVIRONMENT :
 	- Jenkins
 		. GitHub plugin
 		. Emma plugin
+		. Static Analysis Collector Plug-in
+		. Checkstyle Plugin	
+		. FindBugs Plugin
+		. Task Scanner Plugin
+		. Warnings Plugin
+		. PMD Plugin
+		. DRY Plugin
 		
 	- Maven 3.0.4
 	
