@@ -19,7 +19,7 @@ import org.hibernate.Transaction;
  *
  */
 @MappedSuperclass
-public abstract class Entity 
+public abstract class Entity
 {
 
   /** Id. */
