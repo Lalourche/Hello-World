@@ -139,4 +139,30 @@
 			</plugin>
 		</plugins>
 	</build>
+	<issueManagement>
+		<system>Github</system>
+		<url>https://github.com/Lalourche/Hello-World/issues?state=open</url>
+	</issueManagement>
+	<ciManagement>
+		<system>Jenkins</system>
+		<url>http://localhost:8080/job/Hello%20World/</url>
+	</ciManagement>
+	<developers>
+		<developer>
+			<id>lalourche</id>
+			<name>Lalourche</name>
+			<email>la_lourche@yahoo.fr</email>
+			<roles>
+				<role>Project Manager</role>
+				<role>Architect</role>
+				<role>Developper</role>
+			</roles>
+		</developer>
+	</developers>
+	<scm>
+		<url>scm:git:git@github.com:Lalourche/Hello-World.git</url>
+		<developerConnection>scm:git:git@github.com:Lalourche/Hello-World.git</developerConnection>
+		<connection>scm:git:git@github.com:Lalourche/Hello-World.git</connection>
+	</scm>
+	<url>https://github.com/Lalourche/Hello-World</url>
 </project>
