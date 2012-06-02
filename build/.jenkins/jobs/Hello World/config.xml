@@ -60,7 +60,7 @@
     <groupId>fr.lalourche</groupId>
     <artifactId>HelloWorld</artifactId>
   </rootModule>
-  <goals>checkstyle:checkstyle emma:emma package site</goals>
+  <goals>checkstyle:checkstyle pmd:cpd pmd:pmd emma:emma package site</goals>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
   <incrementalBuild>false</incrementalBuild>
   <perModuleEmail>false</perModuleEmail>
