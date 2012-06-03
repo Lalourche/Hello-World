@@ -17,11 +17,11 @@ public final class HibernateHelper
    */
   private static HibernateHelper singleton_ = new HibernateHelper();
   /**
-   * @generated
+   * Session factory.
    */
   private SessionFactory factory_;
   /**
-   * @generated
+   * Current session.
    */
   private ThreadLocal<Session> currentSession_ = new ThreadLocal<Session>();
 
