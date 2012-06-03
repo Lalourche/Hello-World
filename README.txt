@@ -13,6 +13,7 @@ DEVELOPMENT ENVIRONMENT :
 		. m2e (maven)
 		. Resource Bundle editor
 		. Hibernate Tools
+		. ObjectAid
 
 	- Winmerge 2.12.4
 
