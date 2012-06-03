@@ -10,8 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+
+import util.HibernateHelper;
 
 
 /**
@@ -50,13 +51,12 @@ public abstract class Entity
    */
   public static List<? extends Entity> list(Class<? extends Entity> clazz)
   {
-    SessionFactory sf = HibernateUtil.getSessionFactory();
-    Session session = sf.openSession();
+    Session session = HibernateHelper.getInstance().getSession();
 
     String query = "from " + clazz.getSimpleName();
     List<Message> messages = session.createQuery(query).list();
 
-    session.close();
+//    HibernateHelper.getInstance().closeSession();
 
     return messages;
   }
@@ -69,11 +69,12 @@ public abstract class Entity
    */
   public static Entity read(Long id, Class<? extends Entity> clazz)
   {
-    SessionFactory sf = HibernateUtil.getSessionFactory();
-    Session session = sf.openSession();
+    Session session = HibernateHelper.getInstance().getSession();
 
     Entity e = (Entity) session.get(clazz, id);
-    session.close();
+
+//    HibernateHelper.getInstance().closeSession();
+
     return e;
   }
 
@@ -82,8 +83,7 @@ public abstract class Entity
    */
   public final void save()
   {
-    SessionFactory sf = HibernateUtil.getSessionFactory();
-    Session session = sf.openSession();
+    Session session = HibernateHelper.getInstance().getSession();
 
     Transaction transaction = session.beginTransaction();
 
@@ -93,7 +93,7 @@ public abstract class Entity
 
     transaction.commit();
 
-    session.close();
+//    HibernateHelper.getInstance().closeSession();
   }
 
   /**
@@ -101,8 +101,7 @@ public abstract class Entity
    */
   public final void update()
   {
-    SessionFactory sf = HibernateUtil.getSessionFactory();
-    Session session = sf.openSession();
+    Session session = HibernateHelper.getInstance().getSession();
 
     session.beginTransaction();
 
@@ -110,7 +109,7 @@ public abstract class Entity
 
     session.getTransaction().commit();
 
-    session.close();
+//    HibernateHelper.getInstance().closeSession();
   }
 
   /**
@@ -118,8 +117,7 @@ public abstract class Entity
    */
   public final void delete()
   {
-    SessionFactory sf = HibernateUtil.getSessionFactory();
-    Session session = sf.openSession();
+    Session session = HibernateHelper.getInstance().getSession();
 
     Transaction transaction = session.beginTransaction();
 
@@ -127,7 +125,7 @@ public abstract class Entity
 
     transaction.commit();
 
-    session.close();
+//    HibernateHelper.getInstance().closeSession();
   }
 
   /**
@@ -136,8 +134,7 @@ public abstract class Entity
    */
   public static void deleteAll(Class<? extends Entity> clazz)
   {
-    SessionFactory sf = HibernateUtil.getSessionFactory();
-    Session session = sf.openSession();
+    Session session = HibernateHelper.getInstance().getSession();
 
     Transaction transaction = session.beginTransaction();
 
@@ -146,7 +143,7 @@ public abstract class Entity
 
     transaction.commit();
 
-    session.close();
+//    HibernateHelper.getInstance().closeSession();
   }
 
   /**
@@ -158,13 +155,12 @@ public abstract class Entity
   {
     Long result;
 
-    SessionFactory sf = HibernateUtil.getSessionFactory();
-    Session session = sf.openSession();
+    Session session = HibernateHelper.getInstance().getSession();
 
     String query = "select count(*) from " + clazz.getSimpleName();
     result = (Long) session.createQuery(query).iterate().next();
 
-    session.close();
+//    HibernateHelper.getInstance().closeSession();
 
     return result.longValue();
   }
