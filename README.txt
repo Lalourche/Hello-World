@@ -3,14 +3,17 @@
 DEVELOPMENT ENVIRONMENT :
 -------------------------
 
-	- Eclipse SDK 3.7.0
+	- Eclipse SDK 3.7.2
+		. Marketplace Client (FIRST)
+		. EclEmma Java Code Coverage
 		. Mylyn 3.6.5
 			. GitHub connector
+		. FindBugs
 		. Checkstyle
-		. Findbugs 2.0.0
 		. m2e (maven)
-		. Hibernate Tools
 		. Resource Bundle editor
+		. Hibernate Tools
+		. Hiberobjects
 
 	- Winmerge 2.12.4
 
@@ -29,4 +32,3 @@ DEVELOPMENT ENVIRONMENT :
 		. DRY Plugin
 		
 	- Maven 3.0.4
-	
