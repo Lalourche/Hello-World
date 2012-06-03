@@ -13,6 +13,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import util.HibernateHelper;
+
 /**
  * @author Lalourche
  */
@@ -60,6 +62,8 @@ public class MessageTest
 
     // check that database is empty
     Assert.assertEquals(0, Entity.count(Message.class));
+
+    HibernateHelper.getInstance().closeSession();
   }
 
   /**
