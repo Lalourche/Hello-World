@@ -1,8 +1,8 @@
 #Organize Import Order
-#Sat Jan 12 18:43:42 CET 2013
-6=com
-5=org
-4=android
+#Sun Jan 13 15:58:00 CET 2013
+6=org
+5=android
+4=com
 3=fr
 2=junit
 1=javax
