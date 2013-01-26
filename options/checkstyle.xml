@@ -238,10 +238,20 @@
 		  <property name="tokens" value="CLASS_DEF,
 		                                 CTOR_DEF,
 		                                 INTERFACE_DEF,
-						 METHOD_DEF"/>
+										 METHOD_DEF,
+										 LITERAL_CATCH,
+										 LITERAL_DO,
+										 LITERAL_ELSE,
+										 LITERAL_FINALLY,
+										 LITERAL_FOR,
+										 LITERAL_IF,
+										 LITERAL_SWITCH,
+										 LITERAL_SYNCHRONIZED,
+										 LITERAL_TRY,
+										 LITERAL_WHILE"/>
         </module>
 
-	<!-- The others have left brace at eol -->
+	<!-- The others have left brace at eol >
         <module name="LeftCurly">
 		  <property name="option" value="eol"/>
 		  <property name="maxLineLength" value="80"/>
@@ -255,7 +265,7 @@
 						 LITERAL_SYNCHRONIZED,
 						 LITERAL_TRY,
 						 LITERAL_WHILE"/>
-        </module>
+        </module-->
 
 	<!-- TODO -->
         <module name="RightCurly">
